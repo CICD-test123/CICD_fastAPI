@@ -21,4 +21,4 @@ EXPOSE 8000
 
 # 7. 실행 명령 (uvicorn 사용)
 # --host 0.0.0.0 설정이 있어야 외부(도커 외부)에서 접속이 가능하다.
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
