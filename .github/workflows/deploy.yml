@@ -66,6 +66,20 @@ jobs:
             mkdir -p ~/stolink-project
             cd ~/stolink-project
 
+            cat <<EOF > docker-compose.yml
+            services:
+              fastapi-app:
+                image: \${IMAGE_NAME}
+                container_name: fastapi-backend
+                ports:
+                  - "8000:8000"
+                env_file:
+                  - .env
+                environment:
+                  - DATABASE_URL=\${DATABASE_URL}
+                restart: always
+            EOF
+
             # .env 생성 (FastAPI에 필요한 변수들)
             echo "DATABASE_URL=${{ secrets.FASTAPI_DB_URL }}" > .env
             echo "IMAGE_NAME=ghcr.io/${{ env.OWNER_LC }}/stolink-fastapi:latest" >> .env
