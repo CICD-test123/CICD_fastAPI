@@ -1,0 +1,11 @@
+services:
+  fastapi-app:
+    image: ${IMAGE_NAME}
+    container_name: fastapi-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    restart: always
