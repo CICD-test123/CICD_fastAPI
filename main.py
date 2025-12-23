@@ -15,7 +15,7 @@ engine = create_engine(
 def check_all():
     results = {}
 
-    # 1. PostgreSQL 체크
+    # 1. PostgreSQL 체크e
     try:
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
