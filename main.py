@@ -6,7 +6,7 @@ from neo4j import GraphDatabase
 
 app = FastAPI()
 
-# DB 설정 (PostgreSQL 엔진 정의)d
+# DB 설정 (PostgreSQL 엔진 정의)
 engine = create_engine(
     "postgresql://user:password@localhost:5432/database_name")
 
