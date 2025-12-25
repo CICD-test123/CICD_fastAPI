@@ -12,7 +12,7 @@ DB_URL = os.getenv(
     "DATABASE_URL", "postgresql://user:password@rds_endpoint:5432/db_name")
 NEO4J_URL = os.getenv("NEO4J_URL", "bolt://IP:7687")
 NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
-NEO4J_PW = os.getenv("NEO4J_PW", "password")
+NEO4J_PW = os.getenv("NEO4J_PW", "stolink1234")
 SPRING_URL = os.getenv("SPRING_URL", "http://IP:8080")
 
 # DB 설정

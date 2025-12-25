@@ -66,13 +66,16 @@ jobs:
             mkdir -p ~/stolink-project
             cd ~/stolink-project
 
-            # .env 생성 (FastAPI에 필요한 변수들)
-            echo "DATABASE_URL=${{ secrets.FASTAPI_DB_URL }}" > .env
+            # 시크릿들을 조합하여 .env 파일 생성
+            # DB_HOST와 DB_NAME은 직접 입력하거나 추가 시크릿으로 관리한다.
+            echo "DATABASE_URL=postgresql://${{ secrets.DB_USERNAME }}:${{ secrets.DB_PASSWORD }}@your-rds-endpoint:5432/your_db_name" > .env
+            echo "NEO4J_URL=${{ secrets.NEO4J_URI }}" >> .env
+            echo "NEO4J_USER=neo4j" >> .env
+            echo "NEO4J_PW=${{ secrets.NEO4J_PASSWORD }}" >> .env
+            echo "SPRING_URL=http://your-spring-private-ip:8080" >> .env
             echo "IMAGE_NAME=ghcr.io/${{ env.OWNER_LC }}/stolink-fastapi:latest" >> .env
-            # 추가적인 환경 변수가 있다면 여기에 echo로 추가한다.
 
+            # 나머지 실행 로직 (docker compose up 등)
             echo "${{ secrets.GH_PAT }}" | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
-
             docker compose pull
             docker compose up -d
-            docker image prune -f
